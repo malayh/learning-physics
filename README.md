@@ -3,7 +3,10 @@ This is a project that I wanted to do for a long time. I have an engineering deg
 So this project is to learn physics and implement a progressively more complex physics engine from scratch.
 
 # Roadmap
-Gemini created a roadmap for me: https://g.co/gemini/share/7ea8d0c57202
+Roadmaps
+* Gemini: https://g.co/gemini/share/7ea8d0c57202
+* Grok: https://grok.com/share/bGVnYWN5_25f335b3-8467-49eb-8301-c29fa5f52e40
+
 I will add more details here as I progress.
 
 # Progress
