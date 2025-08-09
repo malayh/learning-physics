@@ -1,5 +1,5 @@
 # Learning Physics
-This is a project that I wanted to do for a long time. I have an engineering degree, but I don't know physics and mathematics. I can't live with that 
+This is a project that I wanted to do for a long time. I have an engineering degree, but I don't know physics and mathematics. I can't live with that.
 So this project is to learn physics and implement a progressively more complex physics engine from scratch.
 
 # Roadmap
