@@ -38,6 +38,21 @@ which conan || {
     wget https://github.com/conan-io/conan/releases/download/2.19.1/conan-2.19.1-amd64.deb
     sudo dpkg -i conan-2.19.1-amd64.deb;
     rm conan-2.19.1-amd64.deb;
+    export CC=clang; export CXX=clang++; conan profile detect;
+
+    configfile="$HOME/.conan2/profiles/default";
+    test -f "$configfile" || {
+        echo "Conan profile was not created!";
+        exit 1;
+    }
+
+    sed -i 's/^compiler=.*/compiler=clang/' "$configfile";
+    sed -i 's/^compiler.version=.*/compiler.version=20/' "$configfile";
+    sed -i 's/^compiler.cppstd=.*/compiler.cppstd=gnu23/' "$configfile";
+    echo "[conf]" >> "$configfile";
+    echo 'tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}' >> "$configfile";
+
+
 } && {
     echo "conan installed";
 }
