@@ -4,12 +4,12 @@ using namespace std;
 
 Window::Window(int width, int height, const char* title) {
     if (!glfwInit()) {
-        throw "Test";
+        throw "Failed to initialize GLFW";
     }
     window = glfwCreateWindow(width, height, title, NULL, NULL);
     if (!window) {
         glfwTerminate();
-        throw "Test";
+        throw "Failed to create GLFW window";
     }
     glfwMakeContextCurrent(window);
 }
