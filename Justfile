@@ -8,3 +8,6 @@ init:
 
 build:
     cmake --build build --preset conan-release
+
+run target: build
+    {{justfile_directory()}}/build/dependencies/build/Release/{{target}}
