@@ -12,7 +12,7 @@ static void window_resize_callback(GLFWwindow* window, int width, int height) {
 }
 
 
-Window::Window(int width, int height, const char* title) {
+Scene::Scene(int width, int height, const char* title) {
     if (!glfwInit()) {
         throw "Failed to initialize GLFW";
     }
@@ -32,13 +32,13 @@ Window::Window(int width, int height, const char* title) {
     glEnable(GL_DEPTH_TEST);
 }
 
-Window::~Window() {
+Scene::~Scene() {
     glfwDestroyWindow(this->window);
     glfwTerminate();
 }
 
 
-void Window::putWindowIntheCenter() {
+void Scene::putWindowIntheCenter() {
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
     if (!monitor) return;
 

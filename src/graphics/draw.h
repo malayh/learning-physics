@@ -1,13 +1,11 @@
 #pragma once
 #include<GLFW/glfw3.h>
 
-class Window {
+class Scene {
 public:
     GLFWwindow* window;
-    Window(int width, int height, const char* title);
-    ~Window();
+    Scene(int width, int height, const char* title);
+    ~Scene();
 private:
     void putWindowIntheCenter();
 };
-
-void draw_rectangle(float x, float y, float width, float height);
