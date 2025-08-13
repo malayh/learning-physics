@@ -1,6 +1,15 @@
 #include<GLFW/glfw3.h>
-#include<iostream>
+#include<GL/glu.h>
 #include "draw.h"
+
+
+static void window_resize_callback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0f, (float)width / height, 0.1f, 100.0f);
+    glMatrixMode(GL_MODELVIEW);
+}
 
 
 Window::Window(int width, int height, const char* title) {
@@ -8,11 +17,13 @@ Window::Window(int width, int height, const char* title) {
         throw "Failed to initialize GLFW";
     }
     window = glfwCreateWindow(width, height, title, NULL, NULL);
+    glfwSetFramebufferSizeCallback(window, window_resize_callback);
+
     if (!window) {
         glfwTerminate();
         throw "Failed to create GLFW window";
     }
-    
+
     putWindowIntheCenter();
     glfwMakeContextCurrent(window);
 
@@ -32,12 +43,8 @@ void Window::putWindowIntheCenter() {
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
     if (!monitor) return;
 
-    std::cout << "Monitor: " << monitor << std::endl;
-
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
     if (!mode) return;
-
-    std::cout << "Video Mode: " << mode->width << "x" << mode->height << std::endl;
 
     int monitorX, monitorY;
     glfwGetMonitorPos(monitor, &monitorX, &monitorY);
