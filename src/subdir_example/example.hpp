@@ -1,1 +1,0 @@
-void example_function();
