@@ -6,5 +6,8 @@ public:
     GLFWwindow* window;
     Window(int width, int height, const char* title);
     ~Window();
-    void loop();
+private:
+    void putWindowIntheCenter();
 };
+
+void draw_rectangle(float x, float y, float width, float height);
