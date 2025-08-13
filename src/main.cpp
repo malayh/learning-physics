@@ -70,8 +70,6 @@ void display(GLFWwindow* window) {
     glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
     
     drawSphere();
-    
-    glfwSwapBuffers(window);
 }
 
 
@@ -79,26 +77,28 @@ void display(GLFWwindow* window) {
 
 
 int main() {
-    Window window(1920, 1080, "Physics Simulation");
+    Scene scene(1920, 1080, "Physics Simulation");
 
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45.0f, (float)WIDTH / HEIGHT, 0.1f, 100.0f);
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
-    while (!glfwWindowShouldClose(window.window)) {
+
+    while (!glfwWindowShouldClose(scene.window)) {
         glClearColor(0.08f, 0.12f, 0.12f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         angle += 0.01f;
         if (angle > 2 * M_PI) angle -= 2 * M_PI;
 
-        display(window.window);
+        display(scene.window);
 
 
 
-        glfwSwapBuffers(window.window);
+        glfwSwapBuffers(scene.window);
         glfwPollEvents();
     }
 
