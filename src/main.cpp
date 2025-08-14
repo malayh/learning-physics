@@ -75,32 +75,51 @@ void display(GLFWwindow* window) {
 
 
 
+void drawFunction(Scene* scene) {
+    GLfloat lightPos[] = { -5.0f, 5.0f, 5.0f, 0.0f };
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+
+    
+    drawSphere();
+    angle += 0.01f;
+    if (angle > 2 * M_PI) angle -= 2 * M_PI;
+    scene->camera->posX = camDistance * sin(angle);
+    scene->camera->posZ = camDistance * cos(angle);
+}
+
+
 
 int main() {
     Scene scene(1920, 1080, "Physics Simulation");
+    scene.setDrawFunction(drawFunction);
+
+    // Main loop
+    scene.draw();
 
     
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(45.0f, (float)WIDTH / HEIGHT, 0.1f, 100.0f);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    // glMatrixMode(GL_PROJECTION);
+    // glLoadIdentity();
+    // gluPerspective(45.0f, (float)WIDTH / HEIGHT, 0.1f, 100.0f);
+    // glMatrixMode(GL_MODELVIEW);
+    // glLoadIdentity();
 
 
-    while (!glfwWindowShouldClose(scene.window)) {
-        glClearColor(0.08f, 0.12f, 0.12f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+    // while (!glfwWindowShouldClose(scene.window)) {
+    //     glClearColor(0.08f, 0.12f, 0.12f, 1.0f);
+    //     glClear(GL_COLOR_BUFFER_BIT);
 
-        angle += 0.01f;
-        if (angle > 2 * M_PI) angle -= 2 * M_PI;
+    //     angle += 0.01f;
+    //     if (angle > 2 * M_PI) angle -= 2 * M_PI;
 
-        display(scene.window);
+    //     display(scene.window);
 
 
 
-        glfwSwapBuffers(scene.window);
-        glfwPollEvents();
-    }
+    //     glfwSwapBuffers(scene.window);
+    //     glfwPollEvents();
+    // }
 
 
     return 0;
